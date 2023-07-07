@@ -13,6 +13,7 @@ const oldInventrySchema=mongoose.Schema({
     title:{type:String,required:true},
     desc:{type:String,required:true},
     originalData:{ type: mongoose.Schema.Types.ObjectId, ref: OemsModel },
+    
 
 
 

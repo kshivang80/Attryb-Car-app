@@ -45,8 +45,10 @@ oemsRoute.get("/allOems" ,async(req,res)=>{
             res.status(200).send({carSpecs})
 
         }else{
-            let carSpecs= await OemsModel.find(searchQuery);
-             res.send(carSpecs)
+            // let carSpecs= await OemsModel.find(searchQuery);
+            //  res.send(carSpecs)
+            let carSpecs= await OemsModel.find({});
+            res.send({carSpecs})
 
         }
 
