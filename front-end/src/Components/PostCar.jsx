@@ -13,9 +13,12 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { Searchbar } from '../Pages/Searchbar';
 import { FaSearch } from "react-icons/fa";
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const initialData = {
   title: "",
@@ -36,6 +39,10 @@ const PostCar = () => {
   const [newcardid, setNewCardID] = useState("")
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(initialData);
+  const toast = useToast()
+
+  const auth = useSelector((state) => state.auth);
+  console.log(auth.token, "message in signup")
 
 
   const handleChange = (event) => {
@@ -47,6 +54,35 @@ const PostCar = () => {
     event.preventDefault();
 
     formData.originalData = newcardid.id
+
+    axios.post(`https://odd-lime-chicken-wrap.cyclic.app/old/addinventry`, formData, {
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": auth.token
+      }
+    })
+      .then((res) => {
+        let data = res.data;
+        console.log(data, "posting")
+        //setFormData(initialData)
+        toast({
+          title: 'Post Successful',
+          position: 'top',
+          status: 'success',
+          isClosable: true,
+        })
+
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error)
+        toast({
+          title: 'Post UnSuccessful',
+          position: 'top',
+          status: 'error',
+          isClosable: true,
+        })
+      });
 
   };
 
@@ -94,6 +130,7 @@ const PostCar = () => {
                 <FormControl id="title">
                   <FormLabel>Title</FormLabel>
                   <Input
+                  type='text'
                     id="title"
                     name="title"
                     value={formData.title}
@@ -127,6 +164,7 @@ const PostCar = () => {
                 <FormControl id="km">
                   <FormLabel>Kilometer </FormLabel>
                   <Input
+                   type='Number'
                     id="km"
                     name="km"
                     value={formData.km}
@@ -136,6 +174,7 @@ const PostCar = () => {
                 <FormControl id="majorScratches">
                   <FormLabel>Major Scratches</FormLabel>
                   <Input
+                    type='text'
                     id="majorScratches"
                     name="majorScratches"
                     value={formData.majorScratches}
@@ -145,6 +184,7 @@ const PostCar = () => {
                 <FormControl id="originalPaint">
                   <FormLabel>Original Paint</FormLabel>
                   <Input
+                    type='text'
                     id="originalPaint"
                     name="originalPaint"
                     value={formData.originalPaint}
@@ -154,15 +194,7 @@ const PostCar = () => {
                 <FormControl id="price">
                   <FormLabel>Price </FormLabel>
                   <Input
-                    id="price"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleChange}
-                  />
-                </FormControl>
-                <FormControl id="password">
-                  <FormLabel>Password</FormLabel>
-                  <Input
+                    type='Number'
                     id="price"
                     name="price"
                     value={formData.price}
@@ -170,9 +202,11 @@ const PostCar = () => {
                   />
                 </FormControl>
 
+
                 <FormControl id="accidents">
                   <FormLabel>Accidents</FormLabel>
                   <Input
+                    type='text'
                     id="accidents"
                     name="accidents"
                     value={formData.accidents}
@@ -183,6 +217,7 @@ const PostCar = () => {
                 <FormControl id="prevBuyers">
                   <FormLabel>Previous Buyers</FormLabel>
                   <Input
+                    type='text'
                     id="prevBuyers"
                     name="prevBuyers"
                     value={formData.prevBuyers}
@@ -193,6 +228,7 @@ const PostCar = () => {
                 <FormControl id="image">
                   <FormLabel>Image Url</FormLabel>
                   <Input
+                    type='text'
                     id="image"
                     name="image"
                     value={formData.image}
@@ -203,6 +239,7 @@ const PostCar = () => {
                 <FormControl id="desc">
                   <FormLabel>Description</FormLabel>
                   <Input
+                    type='text'
                     id="desc"
                     name="desc"
                     value={formData.desc}

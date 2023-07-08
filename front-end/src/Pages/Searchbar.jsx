@@ -56,17 +56,7 @@ import SearchData from "./SearchData";
     }
    console.log(data)
 
-    // const getData = async () => {
-    //   try {
-    //     setLoading(true)
-    //     let { data } = await axios.get(`https://odd-lime-chicken-wrap.cyclic.app/oems/allOems?search=${search}`);
-       
-    //     setData(data.carSpecs);
-    //     setLoading(false)
-    //   } catch (error) {
-    //     setLoading(false)
-    //   }
-    // };
+ 
 
 
     useEffect(() => {
@@ -87,7 +77,7 @@ import SearchData from "./SearchData";
       <>
         <Drawer
           isOpen={serachDrawerOpen}
-          placement="top"
+          placement="bottom"
           onClose={() => setSearchDrawerOpen(false)}
         >
           <DrawerOverlay />

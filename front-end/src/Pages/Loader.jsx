@@ -9,9 +9,7 @@ import {
   
   const Loader = ({ cardShow, searchShow }) => {
     
-    //this is loader component show in this i have doen cardShow prope which means when on deals page loading
-    //i have to show cards to i will pass card show true and for search patge search show loader so we canm
-    //user whatever logo we want
+   
   
     return (
       <div>

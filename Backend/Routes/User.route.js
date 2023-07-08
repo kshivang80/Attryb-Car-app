@@ -77,6 +77,19 @@ userRouter.post("/login", async(req,res)=>{
 })
 
 
+/
+
+userRouter.get("/single/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    let user = await UserModel.findById(id);
+    res.status(200).send({ user });
+  } catch (error) {
+    res.status(400).send({ msg: error.message });
+  }
+});
+
+
 
 module.exports={
     userRouter

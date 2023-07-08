@@ -23,7 +23,7 @@ app.get("/", async(req,res)=>{
 
 app.use("/user" ,userRouter)
 app.use("/oems" ,oemsRoute)
-app.use(authentication)
+
 app.use("/old" ,oldInventryRoute)
 
 

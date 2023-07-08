@@ -57,8 +57,9 @@ export default function Navbar() {
                         <Text
                             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
                             fontFamily={'heading'}
+                            as="b"
                             color={useColorModeValue('gray.800', 'white')}>
-                            Logo
+                            Home-page
                         </Text>
                     </Link>
 
@@ -279,12 +280,12 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
     {
-        label: 'Post Data'
+        label: 'Dummy1'
 
 
     },
     {
-        label: 'All Data',
+        label: ' Dummy2',
 
     }
 ];

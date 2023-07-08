@@ -1,12 +1,12 @@
 import "./Login.css"
-import { useToast, Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Link, Button, Heading, Text, useColorModeValue, Image, InputGroup, InputRightElement, FormHelperText, FormErrorMessage } from '@chakra-ui/react';
+import { useToast, Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Button, Heading, Text, useColorModeValue, Image, InputGroup, InputRightElement, FormHelperText, FormErrorMessage } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { authlogin } from "../Redux/Auth/Auth.action";
-
+import { authlogin, getSingleUser } from "../Redux/Auth/Auth.action";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -30,36 +30,8 @@ const Login = () => {
 
 
   const auth = useSelector((state) => state.auth);
-  console.log(auth, "message")
+  console.log(auth, "message in login")
 
-  useEffect(() => {
-    if (auth.message === "Valid User") {
-      toast({
-        title: 'Login Successful',
-        position: 'top',
-        status: 'success',
-        isClosable: true,
-      })
-     
-        navigate("/");
-      
-     
-
-    } else if (auth.message === "Wrong Credentials") {
-      toast({
-        title: 'Invalid User',
-        position: 'top',
-        isClosable: true,
-        status: "error"
-
-      })
-      setInvalidUser(true)
-
-    } else {
-      setInvalidUser(false);
-    }
-
-  }, [auth.message])
 
 
   const handleChange = (event) => {
@@ -69,9 +41,34 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(formData.email !=="" && formData.password !==""){
+    if(formData.email !=="" && formData.password !=="" ){
+
         dispatch(authlogin(formData));
-    }
+        dispatch(getSingleUser(auth.token))
+        toast({
+            title: 'Login Successful',
+            position: 'top',
+            status: 'success',
+            isClosable: true,
+          })
+
+        
+          navigate("/");
+         
+        
+    }else if (auth.message === "Wrong Credentials") {
+        toast({
+          title: 'Invalid User',
+          position: 'top',
+          isClosable: true,
+          status: "error"
+  
+        })
+        setInvalidUser(true)
+  
+      } else {
+        setInvalidUser(false);
+      }
    
   };
 
@@ -103,7 +100,10 @@ const Login = () => {
 
                 p={8}>
                 <Box className='loginTExt' >
-                  <Text className='loginTExt1' >Login to get start</Text>
+                  <Text className='loginTExt1' mt="-5px">Login to get start</Text>
+                  <Text fontSize={'lg'} color={'gray.600'}>
+                        Go to the <Link to="/signup"><Button variant={"link"}>Register Page</Button></Link> 
+                    </Text>
                 </Box>
                 <Stack spacing={5}>
                   <FormControl id="email" isInvalid={isErrorEmail}>
@@ -193,7 +193,7 @@ const Login = () => {
 
           </Box>
 
-          <Box h="100px">
+          <Box h="80px">
 
           </Box>
 

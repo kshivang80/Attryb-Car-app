@@ -1,5 +1,6 @@
 const express=require("express")
 const {InventryModel} =require("../Model/oldInventry.model")
+const { authentication } = require("../Middleware/userAuth")
 
 const oldInventryRoute=express.Router()
 
@@ -9,7 +10,7 @@ const oldInventryRoute=express.Router()
 
 // add data
 
-oldInventryRoute.post("/addinventry" , async(req,res)=>{
+oldInventryRoute.post("/addinventry" , authentication,async(req,res)=>{
      let data=req.body
 
      try{
@@ -36,37 +37,51 @@ oldInventryRoute.get("/alldata", async (req, res) => {
     const { order, filter, search } = req.query;
   
     try {
-      let oldcars;
+      
   
       if (filter === "price") {
+        let oldcars;
 
         const sortDirection = order === "desc" ? -1 : 1;
         oldcars = await InventryModel.find({})
           .populate("originalData")
           .sort({ price: sortDirection });
 
-      } else if (filter === "mileage") {
+        res.status(200).send({ oldcars });
 
-        oldcars = await InventryModel.find({})
-          .populate("originalData")
-          .sort({ "originalData.mileage": order === "desc" ? -1 : 1 });
-
-      } else if (filter === "colors") {
-        const regexQuery = { colors: { $regex: order, $options: "i" } };
-        oldcars = await InventryModel.find({})
+      } else if (filter === "milegeofmodel") {
+        const sortDirection = order === "desc" ? -1 : 1;
+         let  oldcars = await InventryModel.find({})
+            .populate("originalData")
+            .sort({ "originalData.powerofmodel": sortDirection })
+            .lean();
+      
+          
+         
+          res.status(200).send({ oldcars });
+         
+      }
+       else if (filter === "colorofmodel") {
+      const regexQuery = { colorofmodel: { $regex: order, $options: "i" } };
+       let oldcars = await InventryModel.find({})
           .populate({
             path: "originalData",
             match: regexQuery,
           })
           .exec();
         oldcars = oldcars.filter((ele) => ele.originalData !== null);
+
+        res.status(200).send({ oldcars });
       } else {
-        oldcars = await InventryModel.find({}).populate("originalData");
+        let oldcars = await InventryModel.find({}).populate({
+          path:"originalData"
+        });
+        res.status(200).send({ oldcars });
       }
   
-      res.status(200).send({ oldcars });
+     
     } catch (error) {
-      res.status(500).send({ msg: error.message });
+      res.status(500).send({ msg: error.message,mdggg:"hello" });
     }
   });
 
@@ -103,7 +118,7 @@ oldInventryRoute.get("/:id",async(req,res)=>{
 
 //// PATCH REQUEST
 
-oldInventryRoute.patch("/update/:id",async(req,res)=>{
+oldInventryRoute.patch("/update/:id",authentication,async(req,res)=>{
     const ID=req.params.id
     const payload=req.body
 
@@ -137,7 +152,7 @@ oldInventryRoute.patch("/update/:id",async(req,res)=>{
 
 // DELETE REQUEST
 
-oldInventryRoute.delete("/delete/:id",async(req,res)=>{
+oldInventryRoute.delete("/delete/:id",authentication,async(req,res)=>{
     const ID=req.params.id
     //const payload=req.body
 

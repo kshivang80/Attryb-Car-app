@@ -6,7 +6,7 @@ import {
     Input,
     Checkbox,
     Stack,
-    Link,
+    
     Button,
     Heading,
     Text,
@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import { authSignup } from '../Redux/Auth/Auth.action';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -91,7 +92,7 @@ export default function Signup() {
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Sigup in to your account</Heading>
                     <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+                        if you have already account click  <Link to="/login"><Button variant={"link"}>Login</Button></Link> 
                     </Text>
                 </Stack>
                 <Box

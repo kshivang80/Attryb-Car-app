@@ -30,16 +30,19 @@ const SearchData = ({
       <center>
         <Image
           textAlign={"center"}
-          height={150}
+          height={200}
           borderRadius={5}
           src={imageofmodel}
-          width={200}
+          width={"100%"}
         />
       </center>
-      <Text>Name {nameofmodel}</Text>
-      <Text>Year : {yearofmodel}</Text>
-      <Text>New Price ₹ {newmodelprice}</Text>
-  
+      <Text ><span style={{fontWeight:"bold"}}>Name :</span>   {nameofmodel}</Text>
+      <Text ><span style={{fontWeight:"bold"}}>Year :</span> {yearofmodel}</Text>
+      <Text > <span style={{fontWeight:"bold"}}>New Price  :</span> ₹ {newmodelprice}</Text>
+      <Text><span style={{fontWeight:"bold"}}>Max Speed :</span> {maxspeedofmodel} km/hr</Text>
+      <Text> <span style={{fontWeight:"bold"}}>Mielage :</span> {milegeofmodel} /ltr</Text>
+      <Text> <span style={{fontWeight:"bold"}}>powerofmodel :</span> {powerofmodel} HP</Text>
+
       <SimpleGrid gap={2} columns={[2, 4]}>
         {colorofmodel.map((el) => (
           <Button
@@ -55,9 +58,6 @@ const SearchData = ({
           </Button>
         ))}
       </SimpleGrid>
-      <Text>Max Speed {maxspeedofmodel} km/hr</Text>
-      <Text>Mielage {milegeofmodel} /ltr</Text>
-      <Text>powerofmodel {powerofmodel} HP</Text>
     </Box>
   );
 };

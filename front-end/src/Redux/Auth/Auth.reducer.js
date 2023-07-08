@@ -1,5 +1,18 @@
-import { AUTH_USER_ERROR, AUTH_USER_LOGOUT, AUTH_USER_REQUEST, AUTH_USER_SUCCESS,AUTH_USER_SIGNUP_ERROR, AUTH_USER_SIGNUP_REQUEST, AUTH_USER_SIGNUP_SUCCESS } from "./Auth.actionTypes";
+import { json } from "react-router-dom";
+import { AUTH_USER_ERROR, AUTH_USER_LOGOUT, AUTH_USER_REQUEST, AUTH_USER_SUCCESS,AUTH_USER_SIGNUP_ERROR, AUTH_USER_SIGNUP_REQUEST, AUTH_USER_SIGNUP_SUCCESS, GET_SINGLE_USER } from "./Auth.actionTypes";
 
+// //const token = JSON.parse(localStorage.getItem("authToken")) || false;
+// let newtok=JSON.parse(localStorage.getItem("token"))
+
+// const initialState = {
+//     //token: token.token || false,
+//     token:newtok || "",
+//     isAuth: newtok|| false,
+//     isLoading: false,
+//     isError: false,
+//     message:JSON.parse(localStorage.getItem("message")) || "",
+//     user:"",
+// }
 const token = JSON.parse(localStorage.getItem("authToken")) || false;
 
 const initialState = {
@@ -24,9 +37,6 @@ export const authReducer = (state = initialState, action) => {
       case AUTH_USER_SIGNUP_SUCCESS:
         return {
           ...state,
-          isAuth: true,
-          token: payload.token,
-          message: payload.message,
           isLoading: false,
           isError: false,
         };
@@ -34,9 +44,6 @@ export const authReducer = (state = initialState, action) => {
       case AUTH_USER_SIGNUP_ERROR:
         return {
           ...state,
-          isAuth: false,
-          token: false,
-          message: payload.message,
           isLoading: false,
           isError: true,
         };
@@ -81,6 +88,14 @@ export const authReducer = (state = initialState, action) => {
                 message:null
 
             }
+
+            case GET_SINGLE_USER:
+
+                return{
+
+                ...state,
+                user:payload
+                }
 
         default:
             return state;

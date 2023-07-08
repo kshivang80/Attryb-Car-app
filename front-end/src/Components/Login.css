@@ -1,6 +1,6 @@
 .bgBlue {
     height: 535px;
-    width: 106.4%;
+    width: 100%;
     /* border:1px solid red; */
 
 }
@@ -47,12 +47,12 @@
 .loginTExt {
     /* border:1px solid black; */
     height: 80px;
-    margin-top: 0px;
+    
 }
 
 .loginTExt1 {
-    text-align: center;
-    padding-top: 10px;
+    
+   
     font-size: 29px;
     font-family: sans-serif;
 }
@@ -147,7 +147,7 @@
 
     /* STYLES HERE */
     .bgBlue {
-        height: 250px;
+        height: 500px;
         width: 100%;
         /* border:1px solid red; */
 
