@@ -15,6 +15,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Searchbar } from '../Pages/Searchbar';
+import { FaSearch } from "react-icons/fa";
 
 const initialData = {
   title: "",
@@ -85,6 +86,7 @@ const PostCar = () => {
               serachDrawerOpen={serachDrawerOpen}
               setSearchDrawerOpen={(e) => setSearchDrawerOpen(e)}
             />
+
             <form onSubmit={handleSubmit}>
 
 
@@ -98,6 +100,30 @@ const PostCar = () => {
                     onChange={handleChange}
                   />
                 </FormControl>
+                <Flex
+                  flexDirection={["column", "row"]}
+                  alignItems={"center"}
+                  justifyContent={"space-around"}
+                >
+                  <Text as="b" fontSize={"20px"}>Car Model :</Text>
+                  <Text
+                    p={1}
+                    pl={2}
+                    pr={2}
+                    borderRadius={4}
+                    bg={!newcardid.nameofmodel ? "red" : "green"}
+                    color="white"
+                  >
+                    {newcardid.nameofmodel ||
+                      "Select your OEMS"}
+                  </Text>
+                  <Button
+                    colorScheme="green"
+                    onClick={() => setSearchDrawerOpen(true)}
+                  >
+                    <FaSearch />
+                  </Button>
+                </Flex>
                 <FormControl id="km">
                   <FormLabel>Kilometer </FormLabel>
                   <Input

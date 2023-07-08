@@ -3,7 +3,7 @@ const mongoose=require("mongoose")
 const oemsSchema=mongoose.Schema({
     nameofmodel:{type:String,required:true},
     yearofmodel:{type:String,required:true},
-    newmodelprice:{type:Number,required:true},
+    newmodelprice:{type:String,required:true},
     colorofmodel:{type:Array,required:true},
     milegeofmodel:{type:Number,required:true},
     powerofmodel:{type:Number,required:true},

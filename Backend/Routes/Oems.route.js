@@ -27,18 +27,18 @@ oemsRoute.get("/allOems" ,async(req,res)=>{
 
     //The $regex operator is used for pattern matching
    // the $options: "i" option makes the search case-insensitive, 
-    const {searchQuery} =req.query;
+    const {search} =req.query;
 
 
     try{
-        if(searchQuery){
+        if(search){
 
             let carSpecs= await OemsModel.find({
                 $or:[
-                    {nameofmodel:{$regex :searchQuery ,$options:"i"}},
-                    {yearofmodel:{$regex :searchQuery ,$options:"i"}},
-                    {colorofmodel:{$regex :searchQuery ,$options:"i"}},
-                    {newmodelprice:{$regex :searchQuery,$options:"i"}}
+                    {nameofmodel:{$regex :search ,$options:"i"}},
+                    {yearofmodel:{$regex :search ,$options:"i"}},
+                    {colorofmodel:{$regex :search ,$options:"i"}},
+                    {newmodelprice:{$regex :search,$options:"i"}}
                 ]
             })
 

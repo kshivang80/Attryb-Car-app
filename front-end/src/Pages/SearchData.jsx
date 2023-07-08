@@ -3,15 +3,14 @@ import React from "react";
 
 
 const SearchData = ({
-  img,
-  nameOfModel,
-  power,
-  yearOfModel,
-  newPriceOfVehicle,
-  maxSpeed,
-
-  mileage,
-  colors,
+  imageofmodel,
+  nameofmodel,
+  powerofmodel,
+  yearofmodel,
+  newmodelprice,
+  maxspeedofmodel,
+  milegeofmodel,
+  colorofmodel,
 }) => {
 
  
@@ -33,32 +32,32 @@ const SearchData = ({
           textAlign={"center"}
           height={150}
           borderRadius={5}
-          src={img}
+          src={imageofmodel}
           width={200}
         />
       </center>
-      <Text>Name {nameOfModel}</Text>
-      <Text>Year : {yearOfModel}</Text>
-      <Text>New Price ₹ {newPriceOfVehicle}</Text>
+      <Text>Name {nameofmodel}</Text>
+      <Text>Year : {yearofmodel}</Text>
+      <Text>New Price ₹ {newmodelprice}</Text>
   
       <SimpleGrid gap={2} columns={[2, 4]}>
-        {colors.map((el) => (
-          <Text
+        {colorofmodel.map((el) => (
+          <Button
             pr={2}
             pl={2}
-            color="transparent"
-            fontSize="1.4rem"
+          
+            fontSize="18px"
             textAlign={"center"}
             borderRadius={4}
-            bg={`${el}`}
+           
           >
-            erere
-          </Text>
+            {el}
+          </Button>
         ))}
       </SimpleGrid>
-      <Text>Max Speed {maxSpeed} km/hr</Text>
-      <Text>Mielage {mileage} /ltr</Text>
-      <Text>Power {power} HP</Text>
+      <Text>Max Speed {maxspeedofmodel} km/hr</Text>
+      <Text>Mielage {milegeofmodel} /ltr</Text>
+      <Text>powerofmodel {powerofmodel} HP</Text>
     </Box>
   );
 };

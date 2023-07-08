@@ -31,8 +31,13 @@ import SearchData from "./SearchData";
     const [data, setData] = useState([]);
     const toast = useToast()
 
-    const succesAlert = (message, theme) => {
-        toast.success(message, { theme, position: "top-center" });
+    const selectcarAlert = () => {
+        toast({
+            title: 'Selected Succcesful',
+            position: 'top',
+            status: 'success',
+            isClosable: true,
+          })
       };
   
     
@@ -41,7 +46,7 @@ import SearchData from "./SearchData";
           setLoading(true)
            axios.get(`https://odd-lime-chicken-wrap.cyclic.app/oems/allOems?search=${search}`)
            .then((res)=>{
-            setData(res.data);
+            setData(res.data.carSpecs);
             setLoading(false)
            })
            .catch((err)=>{
@@ -50,6 +55,7 @@ import SearchData from "./SearchData";
            })
     }
    console.log(data)
+
     // const getData = async () => {
     //   try {
     //     setLoading(true)
@@ -61,6 +67,8 @@ import SearchData from "./SearchData";
     //     setLoading(false)
     //   }
     // };
+
+
     useEffect(() => {
   
   
@@ -94,7 +102,7 @@ import SearchData from "./SearchData";
               {data.length !== 0 ? (
                 <Text
                   pos={"sticky"}
-                  bg="red"
+                  bg="green.400"
                   color="white"
                   boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"
                   m="auto"
@@ -104,7 +112,7 @@ import SearchData from "./SearchData";
                   p={2}
                   textAlign={"center"}
                 >
-                  Click On Car to Select
+                  Select Your Cars for Listing
                 </Text>
               ) : null}
   
@@ -126,11 +134,11 @@ import SearchData from "./SearchData";
                       onClick={() => [
                         sendSelected({
                           id: el._id,
-                          nameOfModel: el.nameOfModel,
-                          yearOfModel: el.yearOfModel,
+                          nameofmodel: el.nameofmodel,
+                          yearofmodel: el.yearofmodel,
                         }),
                         setSearchDrawerOpen(false),
-                        !nav? succesAlert("Car Model Selected Success"):null
+                        !nav? selectcarAlert():null
                         
                       ]}
                       key={el._id}
