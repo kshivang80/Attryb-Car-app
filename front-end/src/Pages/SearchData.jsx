@@ -14,8 +14,7 @@ const SearchData = ({
   colors,
 }) => {
 
-  //this is the search card used for each  when user searches and get the results  and show on frontendby mapping
-  //these search cards
+ 
   
   return (
     <Box

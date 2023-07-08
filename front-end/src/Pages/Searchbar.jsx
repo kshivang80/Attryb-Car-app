@@ -63,9 +63,6 @@ import SearchData from "./SearchData";
     // };
     useEffect(() => {
   
-      //in this useEffect we have created an id every time when serach text is changes which is setTimout timer id
-      //if any search text changes any other timer is going on it will be cleared by clearTimout and new timeout will 
-      //create afte times over we will search for data in this way we saves number of api calls
   
       if (debouce) {
         let id = setTimeout(() => {
