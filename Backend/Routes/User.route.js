@@ -18,26 +18,26 @@ userRouter.post("/signup", async (req, res) => {
       const existingUser = await UserModel.findOne({ email }); // Check if user with the same email exists
       if (existingUser) {
         // User with the same email already exists
-        res.send({Message:"User already exists"});
+        res.send({message:"User already exists"});
       } else {
         // Encrypt password
         bcrypt.hash(password, 5, async (err, newsecure_password) => {
 
           if (err) {
             console.log(err);
-            res.send({Error:"Error while encrypting password"});
+            res.send({message:"Error while encrypting password"});
 
           } else {
              // store hash in your database
 
             const user = new UserModel({ name, email, password: newsecure_password,profilePic });
             await user.save();
-            res.send( { Message: "You are registered" });
+            res.send( { message: "You are registered" });
           }
         });
       }
     } catch (err) {
-      res.send({ Error: "Error while registering" });
+      res.send({ message: "Error while registering" });
       console.log(err);
     }
   });
@@ -59,13 +59,13 @@ userRouter.post("/login", async(req,res)=>{
                 // random payload change to userid
                 if(result){
                     const token=jwt.sign({userID:user[0]._id},process.env.SECRET_KEY);
-                    res.send({"Msg":"Login Successfully","token":token})
+                    res.send({message:"Valid User","token":token})
                 }else{
-                    res.send({Error:"Wrong Credentials"})
+                    res.send({message:"Wrong Credentials"})
                 }
             })
         }else{
-            res.send({Error:"Wrong Credentials"})
+            res.send({message:"Wrong Credentials"})
         }
 
     

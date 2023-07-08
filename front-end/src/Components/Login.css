@@ -1,0 +1,211 @@
+.bgBlue {
+    height: 535px;
+    width: 106.4%;
+    /* border:1px solid red; */
+
+}
+
+/* .triaDiv{
+    border:1px solid blue;
+    height:250px;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+
+} */
+
+.trangle {
+    margin: auto;
+    height: 180px;
+    width: 300px;
+    /* border:1px solid red; */
+    margin-top: 80px;
+
+}
+
+.image {
+    height: 80%;
+    width: 60%;
+    margin: auto;
+    /* border:1px solid red; */
+}
+
+.text {
+    /* border:1px solid yellow; */
+    height: 20%
+}
+
+.text1 {
+    text-align: center;
+    font-size: 21px;
+    font-family: sans-serif;
+    color: white;
+
+}
+
+.loginTExt {
+    /* border:1px solid black; */
+    height: 80px;
+    margin-top: 0px;
+}
+
+.loginTExt1 {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 29px;
+    font-family: sans-serif;
+}
+
+.form {
+    margin: auto;
+    /* border:1px solid black; */
+    height: 500px;
+    width: 30%;
+    border-radius: 10px;
+    background-color: white;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    margin-top: 30px;
+
+
+}
+
+.btnform {
+    width: 40%;
+    margin: auto;
+    border-radius: 30px;
+}
+
+
+
+
+/**************** media query section *************** */
+
+
+@media screen and (min-device-width: 769px) and (max-device-width: 1080px) {
+
+    /* STYLES HERE */
+    .form {
+        margin: auto;
+        /* border:1px solid black; */
+        height: 480px;
+        width: 38%;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-top: 30px;
+
+
+    }
+    .loginTExt{
+        height: 80px;
+        margin-top: 0px;
+    }
+    .loginTExt1{
+        padding-top: 0px;
+        font-size: 23.5px;
+        font-family: sans-serif;
+    }
+    .btnform {
+        width: 50%;
+        margin: auto;
+        border-radius: 30px;
+    }
+}
+
+@media screen and (min-device-width: 481px) and (max-device-width: 768px) {
+
+     /* STYLES HERE */
+     .form {
+        margin: auto;
+        /* border:1px solid black; */
+        height: 450px;
+        width: 48%;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-top: 30px;
+
+    }
+    .loginTExt{
+        height: 80px;
+        margin-top: 0px;
+    }
+    .loginTExt1{
+        padding-top: 0px;
+        font-size: 23.5px;
+        font-family: sans-serif;
+    }
+    .btnform {
+        width: 50%;
+        margin: auto;
+        border-radius: 30px;
+    }
+}
+
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+
+    /* STYLES HERE */
+    .bgBlue {
+        height: 250px;
+        width: 100%;
+        /* border:1px solid red; */
+
+    }
+
+    .trangle {
+        margin: auto;
+        height: 130px;
+        width: 200px;
+        /* border:1px solid red; */
+        margin-top: 80px;
+
+    }
+
+    .image {
+        height: 80%;
+        width: 60%;
+        margin: auto;
+        /* border:1px solid red; */
+    }
+
+    .text {
+        /* border:1px solid yellow; */
+        height: 20%
+    }
+
+    .text1 {
+        font-size: 14px;
+        font-family: sans-serif;
+        color: white;
+
+    }
+
+    .loginTExt {
+        padding-top: 0px;
+        height: 50px;
+        /* margin-top: 30px; */
+    }
+
+    .loginTExt1 {
+        font-size: 19px;
+        font-family: sans-serif;
+    }
+
+    .form {
+        margin: auto;
+        /* border:1px solid purple; */
+        height: 430px;
+        width: 95%;
+        border-radius: 10px;
+        background-color: white;
+        margin-top: 10px;
+        /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    }
+
+    .btnform {
+        width: 100%;
+        margin: auto;
+        border-radius: 40px;
+    }
+}
