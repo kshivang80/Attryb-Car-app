@@ -12,7 +12,7 @@ import axios from "axios"
       dispatch({ type: AUTH_USER_SIGNUP_REQUEST });
   
       try {
-        const response = await axios.post('http://localhost:8080/user/signup', signupData);
+        const response = await axios.post('https://odd-lime-chicken-wrap.cyclic.app/user/signup', signupData);
         const data = response.data;
         console.log(data);
   
@@ -39,7 +39,7 @@ export const authlogin = (loginData) => async (dispatch) => {
     dispatch({ type: AUTH_USER_REQUEST });
 
     try {
-      const response = await axios.post('http://localhost:8080/user/login', loginData);
+      const response = await axios.post('https://odd-lime-chicken-wrap.cyclic.app/user/login', loginData);
       const data = response.data;
       console.log(data)
   

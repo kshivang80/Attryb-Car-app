@@ -39,7 +39,7 @@ import SearchData from "./SearchData";
 
     const getData=()=>{
           setLoading(true)
-           axios.get(`http://localhost:8080/oems/allOems?search=${search}`)
+           axios.get(`https://odd-lime-chicken-wrap.cyclic.app/oems/allOems?search=${search}`)
            .then((res)=>{
             setData(res.data);
             setLoading(false)
@@ -53,7 +53,7 @@ import SearchData from "./SearchData";
     // const getData = async () => {
     //   try {
     //     setLoading(true)
-    //     let { data } = await axios.get(`http://localhost:8080/oems/allOems?search=${search}`);
+    //     let { data } = await axios.get(`https://odd-lime-chicken-wrap.cyclic.app/oems/allOems?search=${search}`);
        
     //     setData(data.carSpecs);
     //     setLoading(false)
