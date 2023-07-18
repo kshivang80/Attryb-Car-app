@@ -27,7 +27,7 @@ const OldCarsData = ({
     //console.log(auth.user, "new file")
     const [loading, setLoading] = useState(false);
     const toast=useToast()
-
+      console.log(currentFilter,"currentFilter")
     //  const token = localStorage.getItem('token') || "";
     //  const decoded = jwtDecode(token);
     //  console.log(decoded.userID,"decorded data")
@@ -114,7 +114,7 @@ const OldCarsData = ({
                         ? {
                             
                            
-                            color: "black",
+                            color: "green",
                             padding: "5px",
                             borderRadius: "5px",
                             margin: "5px",
@@ -133,7 +133,7 @@ const OldCarsData = ({
                         ? {
                             
                             
-                            color: "black",
+                            color: "green",
                             padding: "5px",
                             borderRadius: "5px",
                             margin: "5px",

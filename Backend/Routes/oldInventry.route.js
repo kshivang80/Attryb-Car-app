@@ -51,14 +51,18 @@ oldInventryRoute.get("/alldata", async (req, res) => {
         res.status(200).send({ oldcars });
 
       } else if (filter === "milegeofmodel") {
-        const sortDirection = order === "desc" ? -1 : 1;
-         let  oldcars = await InventryModel.find({})
-            .populate("originalData")
-            .sort({ "originalData.milegeofmodel": sortDirection })
-            .lean();  // It returning plain JavaScript objects instead of full-fledged Mongoose documents.
-      
-          
-         
+
+        const oldcars = await InventryModel.find({}).populate("originalData").lean();
+
+        //     .lean()  // It returning plain JavaScript objects instead of full-fledged Mongoose documents.
+       
+       if(order==="asc"){
+          oldcars.sort((a, b) => a.originalData.milegeofmodel - b.originalData.milegeofmodel);
+        }else{
+          oldcars.sort((a, b) => b.originalData.milegeofmodel - a.originalData.milegeofmodel);
+
+        }
+
           res.status(200).send({ oldcars });
          
       }

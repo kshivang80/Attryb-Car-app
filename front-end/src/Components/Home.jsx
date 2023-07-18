@@ -38,7 +38,7 @@ const Home = () => {
       })
   }
 
-
+console.log(data)
 
   useEffect(() => {
    
