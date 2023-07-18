@@ -112,7 +112,7 @@ const OldCarsData = ({
                 style={
                     currentFilter === "price"
                         ? {
-                            backgroundColor: "green",
+                            
                            
                             color: "white",
                             padding: "5px",
@@ -129,9 +129,9 @@ const OldCarsData = ({
             <Text><span style={{fontWeight:"bold"}}>Max Speed  :</span> {originalData.maxspeedofmodel} km/hr</Text>
             <Text
                 style={
-                    currentFilter === "mileage"
+                    currentFilter === "milegeofmodel"
                         ? {
-                            backgroundColor: "green",
+                            
                            
                             color: "white",
                             padding: "5px",

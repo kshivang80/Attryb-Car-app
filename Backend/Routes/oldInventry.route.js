@@ -53,7 +53,7 @@ oldInventryRoute.get("/alldata", async (req, res) => {
         const sortDirection = order === "desc" ? -1 : 1;
          let  oldcars = await InventryModel.find({})
             .populate("originalData")
-            .sort({ "originalData.powerofmodel": sortDirection })
+            .sort({ "originalData.milegeofmodel": sortDirection })
             .lean();
       
           
