@@ -16,7 +16,7 @@ import jwtDecode from "jwt-decode";
       try {
         const response = await axios.post('https://odd-lime-chicken-wrap.cyclic.app/user/signup', signupData);
         const data = response.data;
-        console.log(data);
+        console.log(data,'hello signup');
   
         //localStorage.setItem('authToken', JSON.stringify(data));
         dispatch({
@@ -65,7 +65,7 @@ export const authlogin = (loginData) => async (dispatch) => {
   try {
     const response = await axios.post('https://odd-lime-chicken-wrap.cyclic.app/user/login', loginData);
     const data = response.data;
-    console.log(data)
+    console.log(data,'hello chwck');
 
     localStorage.setItem('authToken', JSON.stringify(data));
     dispatch({
@@ -85,11 +85,18 @@ export const authlogin = (loginData) => async (dispatch) => {
   export const getSingleUser= (token)=>async (dispatch)=>{
 
     // const token = localStorage.getItem('token');
+    try{
+      const decoded = jwtDecode(token);
+      console.log(decoded,"decorded data")
+  
+     dispatch({type:GET_SINGLE_USER,payload:decoded.userID});
 
-    const decoded = jwtDecode(token);
-    console.log(decoded,"decorded data")
+    }catch(err){
+      console.log(err)
 
-   dispatch({type:GET_SINGLE_USER,payload:decoded.userID});
+    }
+
+   
 
   
 

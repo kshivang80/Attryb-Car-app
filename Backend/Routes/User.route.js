@@ -56,22 +56,28 @@ userRouter.post("/login", async(req,res)=>{
 
         if(user.length>0){
             bcrypt.compare(password,hashed_pass,(err,result) =>{
+
+              if (err) {
+                res.send('something went wrong , try again');
+              }
                 // random payload change to userid
                 if(result){
                     const token=jwt.sign({userID:user[0]._id},process.env.SECRET_KEY);
-                    res.send({message:"Valid User","token":token})
+                   // res.send({message:"Valid User","token":token})
+                   res.send({ success: true, message: 'Valid User',token });
                 }else{
-                    res.send({message:"Wrong Credentials"})
+                  res.send({ success: false, message: 'Invalid User' });
                 }
             })
         }else{
-            res.send({message:"Wrong Credentials"})
+          console.log({"Error":"Error While Login",err})
+          return res.status(500).send({ success: false, message: 'Invalid User' });
         }
 
     
     
     }catch(err){
-        console.log({"Error":"Error While Login"})
+      res.send({message:"Email is not valid"})
         console.log(err)
     }
 })

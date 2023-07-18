@@ -74,8 +74,8 @@ export default function Signup() {
         event.preventDefault();
         if (formData.email !== "" && formData.password !== "") {
             dispatch(authSignup(formData));
-            
-
+            //console.log("done")
+   
         }
 
     };

@@ -31,7 +31,49 @@ const Login = () => {
 
   const auth = useSelector((state) => state.auth);
   console.log(auth, "message in login")
+  console.log(auth.message, "message in login")
 
+
+  useEffect(() => {
+    if (auth.message === "Valid User") {
+      toast({
+        title: 'Login Successful',
+        position: 'top',
+        status: 'success',
+        isClosable: true,
+      })
+     
+        navigate("/");
+      
+     
+
+    } else if (auth.message === "Invalid User") {
+      toast({
+        title: 'Invalid User',
+        position: 'top',
+        isClosable: true,
+        status: "error"
+
+      })
+      setInvalidUser(true)
+
+    }else if (auth.message === "Email is not valid") {
+          toast({
+            title: 'Email is not Listted',
+            position: 'top',
+            isClosable: true,
+            status: "error"
+    
+          })
+          setInvalidUser(true)
+    
+        }
+    
+    else {
+      setInvalidUser(false);
+    }
+
+  }, [auth.message])
 
 
   const handleChange = (event) => {
@@ -41,34 +83,49 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(formData.email !=="" && formData.password !=="" ){
+    // if( formData.email !=="" && formData.password !=="" ){
 
-        dispatch(authlogin(formData));
-        dispatch(getSingleUser(auth.token))
-        toast({
-            title: 'Login Successful',
-            position: 'top',
-            status: 'success',
-            isClosable: true,
-          })
+    //     dispatch(authlogin(formData));
+    //     dispatch(getSingleUser(auth.token))
+    //     toast({
+    //         title: 'Login Successful',
+    //         position: 'top',
+    //         status: 'success',
+    //         isClosable: true,
+    //       })
 
         
-          navigate("/");
+    //       navigate("/");
+    //       setInvalidUser(false)
          
         
-    }else if (auth.message === "Wrong Credentials") {
-        toast({
-          title: 'Invalid User',
-          position: 'top',
-          isClosable: true,
-          status: "error"
+    // }else if (auth.message === "Wrong Credentials") {
+    //     toast({
+    //       title: 'Invalid User',
+    //       position: 'top',
+    //       isClosable: true,
+    //       status: "error"
   
-        })
-        setInvalidUser(true)
+    //     })
+    //     setInvalidUser(true)
   
-      } else {
-        setInvalidUser(false);
-      }
+    //   }else if (auth.message === "Email is not valid") {
+    //     toast({
+    //       title: 'Email is not valid',
+    //       position: 'top',
+    //       isClosable: true,
+    //       status: "error"
+  
+    //     })
+    //     setInvalidUser(true)
+  
+    //   } else {
+    //     setInvalidUser(false);
+    //   }
+    if(formData.email !=="" && formData.password !==""){
+      dispatch(authlogin(formData));
+    }
+    
    
   };
 
