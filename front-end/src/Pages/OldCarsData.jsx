@@ -114,7 +114,7 @@ const OldCarsData = ({
                         ? {
                             
                            
-                            color: "white",
+                            color: "black",
                             padding: "5px",
                             borderRadius: "5px",
                             margin: "5px",
@@ -132,8 +132,8 @@ const OldCarsData = ({
                     currentFilter === "milegeofmodel"
                         ? {
                             
-                           
-                            color: "white",
+                            
+                            color: "black",
                             padding: "5px",
                             borderRadius: "5px",
                             margin: "5px",
