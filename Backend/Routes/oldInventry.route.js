@@ -35,7 +35,8 @@ oldInventryRoute.post("/addinventry" , authentication,async(req,res)=>{
 
 oldInventryRoute.get("/alldata", async (req, res) => {
     const { order, filter, search } = req.query;
-  
+
+  //The code uses populate() to fetch referenced data from another collection using the "originalData" field.
     try {
       
   
@@ -54,7 +55,7 @@ oldInventryRoute.get("/alldata", async (req, res) => {
          let  oldcars = await InventryModel.find({})
             .populate("originalData")
             .sort({ "originalData.milegeofmodel": sortDirection })
-            .lean();
+            .lean();  // It returning plain JavaScript objects instead of full-fledged Mongoose documents.
       
           
          
@@ -62,6 +63,8 @@ oldInventryRoute.get("/alldata", async (req, res) => {
          
       }
        else if (filter === "colorofmodel") {
+        //The $regex operator is used for pattern matching and text manipulation like (/\ferari\w*/gi)
+      // the $options: "i" option makes the search case-insensitive, 
       const regexQuery = { colorofmodel: { $regex: order, $options: "i" } };
        let oldcars = await InventryModel.find({})
           .populate({
@@ -87,18 +90,7 @@ oldInventryRoute.get("/alldata", async (req, res) => {
 
 
 
-// get  by id 
 
-// oldInventryRoute.get("/:id", async (req, res) => {
-//     const { id } = req.params;
-  
-//     try {
-//       let oldcars = await InventryModel.findById(id);
-//       res.status(200).send({ oldcars });
-//     } catch (error) {
-//       res.status(500).send({ msg: error.message });
-//     }
-//   });
 
   // GET all cars BY therir ID
 
@@ -125,8 +117,8 @@ oldInventryRoute.patch("/update/:id",authentication,async(req,res)=>{
     // For Finding Id Building RelationShip
     const car=await InventryModel.findOne({_id:ID})
     console.log(car,"car user id")
-    const userID_in_car=car.userID
-    const userID_making_req=req.body.userID
+    const userID_in_car=car.userID  // car.userID represents the user ID associated with the car
+    const userID_making_req=req.body.userID  // userID_making_req represents the user ID from the authenticated request.
 
     try{
         if(userID_making_req !==userID_in_car){
@@ -159,8 +151,8 @@ oldInventryRoute.delete("/delete/:id",authentication,async(req,res)=>{
     // For Finding Id Building RelationShip
     const car=await InventryModel.findOne({_id:ID})
     console.log(car,"car user id")
-    const userID_in_car=car.userID
-    const userID_making_req=req.body.userID
+    const userID_in_car=car.userID  // car.userID represents the user ID associated with the car
+    const userID_making_req=req.body.userID  //userID_making_req represents the user ID from the authenticated request.
 
     try{
         if(userID_making_req !==userID_in_car){

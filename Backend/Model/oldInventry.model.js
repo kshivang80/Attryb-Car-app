@@ -12,7 +12,8 @@ const oldInventrySchema=mongoose.Schema({
     image:{type:String,required:true},
     title:{type:String,required:true},
     desc:{type:String,required:true},
-    originalData:{ type: mongoose.Schema.Types.ObjectId, ref: OemsModel },
+    originalData:{ type: mongoose.Schema.Types.ObjectId, ref: OemsModel }, 
+    // Ref :This part is used when dealing with MongoDB references (also known as population in Mongoose)
     
 
 

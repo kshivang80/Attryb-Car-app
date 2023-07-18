@@ -5,8 +5,11 @@ const authentication=(req,res,next)=>{
      const token=req.headers.authorization
 
      if(token){
-        const decoded=jwt.verify(token,process.env.SECRET_KEY)
+        //The jwt.verify() function verifies the token's signature and checks if it's valid and not expired.
 
+
+        const decoded=jwt.verify(token,process.env.SECRET_KEY)
+        // If the token is successfully verified then userID extracted from the decoded payload and added to request Body
         if(decoded){
             const userID=decoded.userID
             console.log(decoded)

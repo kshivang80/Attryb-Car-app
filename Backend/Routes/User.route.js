@@ -20,7 +20,7 @@ userRouter.post("/signup", async (req, res) => {
         // User with the same email already exists
         res.send({message:"User already exists"});
       } else {
-        // Encrypt password
+        // The code uses bcrypt.hash() to encrypt the provided password
         bcrypt.hash(password, 5, async (err, newsecure_password) => {
 
           if (err) {
@@ -55,6 +55,7 @@ userRouter.post("/login", async(req,res)=>{
         console.log(user)
 
         if(user.length>0){
+          // bcrypt.compare() = compares the plain password with the hashed version.
             bcrypt.compare(password,hashed_pass,(err,result) =>{
 
               if (err) {
@@ -62,8 +63,10 @@ userRouter.post("/login", async(req,res)=>{
               }
                 // random payload change to userid
                 if(result){
+                //the code generates a JSON Web Token (JWT) using the jwt.sign() function
+
                     const token=jwt.sign({userID:user[0]._id},process.env.SECRET_KEY);
-                   // res.send({message:"Valid User","token":token})
+                   
                    res.send({ success: true, message: 'Valid User',token });
                 }else{
                   res.send({ success: false, message: 'Invalid User' });

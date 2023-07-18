@@ -25,7 +25,7 @@ oemsRoute.post('/create', async(req,res)=>{
 
 oemsRoute.get("/allOems" ,async(req,res)=>{
 
-    //The $regex operator is used for pattern matching
+    //The $regex operator is used for pattern matching and text manipulation like (/\ferari\w*/gi)
    // the $options: "i" option makes the search case-insensitive, 
     const {search} =req.query;
 
