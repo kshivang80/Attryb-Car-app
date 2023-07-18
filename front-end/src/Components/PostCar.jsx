@@ -118,7 +118,7 @@ const PostCar = () => {
             p={8}>
 
             <Searchbar
-              sendSelected={(e) => setNewCardID(e)}
+              sendSelected={(e) => setNewCardID(e)}  
               serachDrawerOpen={serachDrawerOpen}
               setSearchDrawerOpen={(e) => setSearchDrawerOpen(e)}
             />

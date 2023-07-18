@@ -168,7 +168,7 @@ const OldCarsData = ({
 
             <EditForm
                 id={_id}
-                callData={() => calldata()}
+                callData={() => calldata()}  ////This prop is a function that triggers the calldata() 
                 editModalOpen={editModalOpen}
                 setEditModalOpen={(e) => setEditModalOpen(e)}
             />

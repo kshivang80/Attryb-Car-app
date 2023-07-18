@@ -131,10 +131,10 @@ const Home = () => {
           data &&
           data.map((el) => (
             <OldCarsData
-              calldata={() => getDatas()}
-              currentFilter={filter}
-              key={el._id}
-              {...el}
+              calldata={() => getDatas()}  //This prop is a function that triggers the getDatas() 
+              currentFilter={filter}  //This prop likely passes the filter value
+              key={el._id}  // React requires a unique key prop 
+              {...el}  //This is the spread operator that passes all other properties of the el object as individual props
             />
           ))
         )}
