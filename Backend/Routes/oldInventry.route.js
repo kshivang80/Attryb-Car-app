@@ -34,6 +34,7 @@ oldInventryRoute.post("/addinventry" , authentication,async(req,res)=>{
 /////// all data   /////////////////////
 
 oldInventryRoute.get("/alldata", async (req, res) => {
+  //const { order, filter, search, page=1, perPage=10 } = req.query;
     const { order, filter, search } = req.query;
 
   //The code uses populate() to fetch referenced data from another collection using the "originalData" field.
@@ -47,6 +48,8 @@ oldInventryRoute.get("/alldata", async (req, res) => {
         oldcars = await InventryModel.find({})
           .populate("originalData")
           .sort({ price: sortDirection });
+          // .skip((parseInt(page) - 1) * parseInt(perPage))
+         //.limit(parseInt(perPage));
 
         res.status(200).send({ oldcars });
 
