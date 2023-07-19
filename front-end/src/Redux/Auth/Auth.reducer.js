@@ -39,6 +39,7 @@ export const authReducer = (state = initialState, action) => {
           ...state,
           isLoading: false,
           isError: false,
+          message: payload.message,
         };
   
       case AUTH_USER_SIGNUP_ERROR:
@@ -46,6 +47,7 @@ export const authReducer = (state = initialState, action) => {
           ...state,
           isLoading: false,
           isError: true,
+          message: payload.message,
         };
 
 

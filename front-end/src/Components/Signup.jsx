@@ -72,9 +72,10 @@ export default function Signup() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (formData.email !== "" && formData.password !== "") {
+        if (formData.email !== "" && formData.password !== "" && formData.name !== "" ) {
             dispatch(authSignup(formData));
             //console.log("done")
+           // setFormData("")
    
         }
 

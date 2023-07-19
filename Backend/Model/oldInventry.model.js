@@ -13,6 +13,7 @@ const oldInventrySchema=mongoose.Schema({
     title:{type:String,required:true},
     desc:{type:String,required:true},
     originalData:{ type: mongoose.Schema.Types.ObjectId, ref: OemsModel }, 
+    //mongoose.Schema.Types.ObjectId is like a unique ID that MongoDB
     // Ref :This part is used when dealing with MongoDB references (also known as population in Mongoose)
     
 

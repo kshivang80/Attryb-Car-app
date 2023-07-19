@@ -64,8 +64,9 @@ userRouter.post("/login", async(req,res)=>{
                 // random payload change to userid
                 if(result){
                 //the code generates a JSON Web Token (JWT) using the jwt.sign() function
-
+         
                     const token=jwt.sign({userID:user[0]._id},process.env.SECRET_KEY);
+                    //const token = jwt.sign({userID:user[0]._id}, process.env.SECRET_KEY, { expiresIn: '1h' });  // expires token in 1hours
                    
                    res.send({ success: true, message: 'Valid User',token });
                 }else{
@@ -86,7 +87,7 @@ userRouter.post("/login", async(req,res)=>{
 })
 
 
-/
+
 
 userRouter.get("/single/:id", async (req, res) => {
   const { id } = req.params;
