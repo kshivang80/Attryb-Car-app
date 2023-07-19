@@ -31,7 +31,7 @@ export default function Navbar() {
     const dispatch = useDispatch();
     const { isOpen, onToggle } = useDisclosure();
     const auth = useSelector((state) => state.auth);
-    console.log(auth.token, "message in Navbar")
+    console.log(auth, "message in Navbar")
 
     useEffect(() => {
 
@@ -103,7 +103,7 @@ export default function Navbar() {
                             Post data
                         </Button>
                     </Link>
-                    {auth.token === false || undefined ? (
+                    {auth.token === false || auth.token === undefined ? (
                         <Link to="/login">
                             <Button
                                 as={'a'}
