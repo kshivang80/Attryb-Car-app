@@ -23,10 +23,24 @@ import {
 } from '@chakra-ui/icons';
 
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux';
+import { AUTH_USER_LOGOUT } from '../Redux/Auth/Auth.actionTypes';
+import { useEffect } from 'react';
 
 export default function Navbar() {
+    const dispatch = useDispatch();
     const { isOpen, onToggle } = useDisclosure();
+    const auth = useSelector((state) => state.auth);
+    console.log(auth.token, "message in Navbar")
 
+    useEffect(() => {
+
+    }, [auth.token])
+
+    const handleLogout = () => {
+        dispatch({ type: AUTH_USER_LOGOUT });
+
+    };
     return (
         <Box>
             <Flex
@@ -89,7 +103,41 @@ export default function Navbar() {
                             Post data
                         </Button>
                     </Link>
-                    <Link to="/login">
+                    {auth.token === false || undefined ? (
+                        <Link to="/login">
+                            <Button
+                                as={'a'}
+                                fontSize={'sm'}
+                                fontWeight={400}
+                                bg={'teal.500'}
+                                color={'white'}
+                                href={'#'}
+                                _hover={{
+                                    bg: 'teal.300',
+                                }}>
+                                Login
+                            </Button>
+                        </Link>
+
+                    ) : (
+                        <Button
+                            onClick={handleLogout}
+                            as={'a'}
+                            fontSize={'sm'}
+                            fontWeight={400}
+                            bg={'teal.500'}
+                            color={'white'}
+
+                            _hover={{
+                                bg: 'teal.300',
+                            }}>
+                            Logout
+                        </Button>
+
+                    )
+
+                    }
+                    {/* <Link to="/login">
                         <Button
                             as={'a'}
                             fontSize={'sm'}
@@ -102,7 +150,7 @@ export default function Navbar() {
                             }}>
                             Login
                         </Button>
-                    </Link>
+                    </Link> */}
 
 
                     <Link to="/signup">

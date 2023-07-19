@@ -14,7 +14,7 @@ import { AUTH_USER_ERROR, AUTH_USER_LOGOUT, AUTH_USER_REQUEST, AUTH_USER_SUCCESS
 //     user:"",
 // }
 const token = JSON.parse(localStorage.getItem("authToken")) || false;
-console.log(token,"new")
+//console.log(token,"new")
 const initialState = {
     token: token.token || false,
     isAuth: token.token || false,
@@ -57,7 +57,7 @@ export const authReducer = (state = initialState, action) => {
         // Login  
 
         case AUTH_USER_REQUEST:
-            return { ...state, isLoading: true, isError: false }
+            return { ...state, isAuth: false, isLoading: true, isError: false }
 
         case AUTH_USER_SUCCESS:
             return {
@@ -74,7 +74,7 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuth: false,
-               // token: payload.token,
+                token: payload.token,
                
                 message: payload.message,
                 isLoading: false,
