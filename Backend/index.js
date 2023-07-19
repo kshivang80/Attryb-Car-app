@@ -18,6 +18,7 @@ app.get("/", async(req,res)=>{
        res.send({Message:"This is home page"})
     }catch(err){
            console.log(err)
+           res.status(400).send(err)
     }
 })
 
@@ -35,6 +36,7 @@ app.listen(process.env.PORT, async()=>{
          console.log("connected succesfully")
     }catch(err){
            console.log(err)
+           res.status(400).send(err)
     }
 
     console.log(`port is running on ${process.env.PORT}`)

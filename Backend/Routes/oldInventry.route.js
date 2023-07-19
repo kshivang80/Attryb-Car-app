@@ -18,11 +18,11 @@ oldInventryRoute.post("/addinventry" , authentication,async(req,res)=>{
          await new_data.save()
 
          console.log(new_data)
-         res.send({Message:"New Data is added succesfully"})
+         res.status(200).send({Message:"New Data is added succesfully"})
 
      }catch(err){
            console.log(err)
-          res.send({Message:"Error while adding data"})
+           res.status(400).send({Message:"Error while adding data"})
      }
 
 
@@ -91,7 +91,7 @@ oldInventryRoute.get("/alldata", async (req, res) => {
   
      
     } catch (error) {
-      res.status(500).send({ msg: error.message,mdggg:"hello" });
+      res.status(500).send({ msg: error.message });
     }
   });
 
@@ -111,6 +111,8 @@ oldInventryRoute.get("/:id",async(req,res)=>{
     }catch(err){
         console.log(err)
         console.log({"error":"Error is coming While Get data"})
+        res.status(400).send({err})
+
 
     }
 })
@@ -130,11 +132,11 @@ oldInventryRoute.patch("/update/:id",authentication,async(req,res)=>{
     try{
         if(userID_making_req !==userID_in_car){
 
-            res.send({"Msg":"You are not authorized"})
+          res.status(400).send({"Msg":"You are not authorized"})
 
         }else{
             await InventryModel.findByIdAndUpdate({_id:ID},payload)
-            res.send(`update the car whose ID is ${ID}`)
+            res.status(200).send(`update the car whose ID is ${ID}`)
 
         }
 
@@ -143,6 +145,7 @@ oldInventryRoute.patch("/update/:id",authentication,async(req,res)=>{
 
         console.log(err)
         console.log({"error":"Error is coming While Patch car"})
+        res.status(400).send({"Msg":"Error is coming While Patch car"})
 
 
     }
@@ -164,11 +167,11 @@ oldInventryRoute.delete("/delete/:id",authentication,async(req,res)=>{
     try{
         if(userID_making_req !==userID_in_car){
 
-            res.send({"Msg":"You are not authorized"})
+          res.status(400).send({"Msg":"You are not authorized"})
 
         }else{
             await InventryModel.findByIdAndDelete({_id:ID})
-            res.send(`DELETE the car whose ID is ${ID}`)
+            res.status(200).send(`DELETE the car whose ID is ${ID}`)
 
         }
 
@@ -177,7 +180,7 @@ oldInventryRoute.delete("/delete/:id",authentication,async(req,res)=>{
 
         console.log(err)
         console.log({"error":"Error is coming While DELETING car"})
-
+        res.status(400).send({"Msg":"Error is coming While DELETING car"})
 
     }
 

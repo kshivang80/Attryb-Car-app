@@ -18,11 +18,12 @@ const authentication=(req,res,next)=>{
             req.body.userID=userID // this line adds the userID to the req.body object
             next()
         }else{
-            res.send("Please Login First")
+            
+            res.status(400).send("Please Login First")
         }
 
      }else{
-        res.send("Please Login First")
+        res.status(400).send("Please Login First")
      }
 }
 

@@ -12,11 +12,12 @@ oemsRoute.post('/create', async(req,res)=>{
         const new_data=new OemsModel(data);
          await new_data.save()
          console.log(new_data)
-         res.send({Meaasge:"added the new car Data Successfully"})
+         res.status(200).send({Message:"added the new car Data Successfully"})
 
     }catch(err){
         console.log(err)
         console.log({"error":"Error is coming While Creating New Data"})
+        res.status(400).send({Message:err})
 
     }
 })
@@ -48,13 +49,14 @@ oemsRoute.get("/allOems" ,async(req,res)=>{
             // let carSpecs= await OemsModel.find(searchQuery);
             //  res.send(carSpecs)
             let carSpecs= await OemsModel.find({});
-            res.send({carSpecs})
+            res.status(200).send({carSpecs})
 
         }
 
     }catch(err){
         console.log({"Error":"Error While searchQuery"})
         console.log(err)
+        res.status(400).send({Message:err})
     }
 })
 
